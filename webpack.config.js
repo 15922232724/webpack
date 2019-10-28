@@ -5,21 +5,22 @@ module.exports = {
 
   // 入口
   // entry: path.join(__dirname, './src/index.js'),
+
   entry: ["babel-polyfill", './src/index.js'
     // pageTwo: './src/main.js',
   ],
   //出口
   output: {
     path: path.join(__dirname, './dist'),
-    filename: 'b.js',
-    publicPath: '/dist/'
+    filename: 'b.js',//输出目录
+    publicPath: '/dist/'//控制界面内容改变的时候刷新
   },
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     }
   },
-  mode: 'development',
+  mode: 'development',//开发模式
   devServer: {
     historyApiFallback: true,
     overlay: true
@@ -29,8 +30,8 @@ module.exports = {
     new VueLoaderPlugin()
 
   ],
-  devtool: 'inline-source-map',
-  module: {
+  devtool: 'inline-source-map',//报错提示
+  module: {//css,vue等文件名的文件处理
     rules: [
       {
         test: /\.css$/,
