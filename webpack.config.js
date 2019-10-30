@@ -12,7 +12,7 @@ module.exports = {
   //出口
   output: {
     path: path.join(__dirname, './dist'),
-    filename: 'b.js',//输出目录
+    filename: '[name].js',//输出目录
     publicPath: '/dist/'//控制界面内容改变的时候刷新
   },
   resolve: {
@@ -34,11 +34,19 @@ module.exports = {
   module: {//css,vue等文件名的文件处理
     rules: [
       {
-        test: /\.css$/,
+        test: /\.(eot|woff2|woff|ttf|svg)/,
         use: [
-          'vue-style-loader',
-          'css-loader'
-        ],
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name][hash:5].min.[ext]',
+              limit: 5000,
+              publicPath: '',
+              outputPath: 'dist/',
+              useRelativePath: true
+            }
+          }
+        ]
       },
       {
         test: /\.css$/,
